@@ -12,11 +12,16 @@
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
 (add-hook 'js-mode-hook (lambda () (setq js-indent-level 2)))
+(add-hook 'css-mode-hook (lambda () (setq css-indent-offset 2)))
 
-(map! :en "C-h"   #'evil-window-left
-      :en "C-j"   #'evil-window-down
-      :en "C-k"   #'evil-window-up
-      :en "C-l"   #'evil-window-right)
+(map!
+ :en "C-h"   #'evil-window-left
+ :en "C-j"   #'evil-window-down
+ :en "C-k"   #'evil-window-up
+ :en "C-l"   #'evil-window-right
+ :en "M-("   #'paredit-wrap-round
+ :en "M-l"   #'paredit-forward-slurp-sexp
+ :en "M-h"   #'paredit-forward-burf-sexp)
 
 (defun +cwejman-vc-refresh-modelines (a)
   (dolist (buffer (doom-buffer-list))
