@@ -8,6 +8,12 @@
 (setq neo-window-fixed-size nil)
 (setq nodejs-repl-arguments ["--config-file /Users/work/\@/web-admin/.babelrc"])
 (setq nodejs-repl-command "babel-node")
+(setq avy-timeout-seconds 0.15)
+(setq doom-theme 'doom-nord)
+
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      x-select-enable-clipboard t)
 
 (add-hook! 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
@@ -32,3 +38,9 @@
 (advice-add 'magit-checkout :after #'+cwejman-vc-refresh-modelines)
 
 (map! "M-o" #'other-frame)
+
+(use-package pdf-view
+  :hook (pdf-tools-enabled . pdf-view-midnight-minor-mode)
+  :hook (pdf-tools-enabled . hide-mode-line-mode)
+  :config
+  (setq pdf-view-midnight-colors '("#ABB2BF" . "#282C35")))
